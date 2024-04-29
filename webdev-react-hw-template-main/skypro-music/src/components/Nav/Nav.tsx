@@ -1,42 +1,49 @@
+'use client'
+
 import Image from "next/image";
+import styles from "./Nav.module.css";
 import Link from "next/link";
+import { useState } from "react";
+
 
 export default function Nav() {
-    return (
-        <nav className="main__nav nav">
-          <div className="nav__logo logo">
-            <Image 
-            alt="Скайпро-музыка.логотип" 
-            className="logo__image" 
-            src="/img/logo.png"
-            width={113}
-            height={17} 
-            />
-          </div>
-          <div className="nav__burger burger">
-            <span className="burger__line" />
-            <span className="burger__line" />
-            <span className="burger__line" />
-          </div>
-          <div className="nav__menu menu">
-            <ul className="menu__list">
-              <li className="menu__item">
-                <a href="#" className="menu__link">
-                  Главное
-                </a>
-              </li>
-              <li className="menu__item">
-                <a href="#" className="menu__link">
-                  Мой плейлист
-                </a>
-              </li>
-              <li className="menu__item">
-                <Link href="/signin" className="menu__link">
-                  Выйти
-                </Link>
-              </li>
-            </ul>
-          </div>
-        </nav>
-    )
+  const [isOpened, setIsOpened] = useState<boolean>(false);
+  return (
+    <nav className={styles.mainNav}>
+      <div className={styles.navLogo}>
+        <Image
+          alt="Скайпро-музыка.логотип"
+          className={styles.logoImage}
+          src="/img/logo.png"
+          width={113}
+          height={17}
+        />
+      </div>
+      <div onClick={() => setIsOpened((prev) => !prev)} className={styles.navBurger}>
+        <span className={styles.burgerLine} />
+        <span className={styles.burgerLine} />
+        <span className={styles.burgerLine} />
+      </div>
+      {isOpened && 
+      (<div className={styles.navMenu}>
+        <ul className={styles.menuList}>
+          <li className={styles.menuItem}>
+            <a href="#" className={styles.menuLink}>
+              Главное
+            </a>
+          </li>
+          <li className={styles.menuItem}>
+            <a href="#" className={styles.menuLink}>
+              Мой плейлист
+            </a>
+          </li>
+          <li className={styles.menuItem}>
+            <Link href="/signin" className={styles.menuLink}>
+              Войти
+            </Link>
+          </li>
+        </ul>
+      </div>)}
+    </nav>
+  )
 }
