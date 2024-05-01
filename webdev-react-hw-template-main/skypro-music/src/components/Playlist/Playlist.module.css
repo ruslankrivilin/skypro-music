@@ -6,6 +6,9 @@
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
     flex-direction: column;
+    height: 700px;
+    overflow: auto;
+
   }
 
   .contentTitle {
@@ -69,3 +72,5 @@
     width: 60px;
     text-align: end;
   }
+
+  
