@@ -1,25 +1,51 @@
 .filterButton {
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
-    border: 1px solid #ffffff;
-    border-radius: 60px;
-    padding: 6px 20px;
-  }
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  border: 1px solid #ffffff;
+  border-radius: 60px;
+  padding: 6px 20px;
+}
 
-  .filterButton:not(:last-child) {
-    margin-right: 10px;
-  }
+.filterButton:not(:last-child) {
+  margin-right: 10px;
+}
 
-  .BtnText:hover {
-    border-color: #d9b6ff;
-    color: #d9b6ff;
-    cursor: pointer;
-  }
+.BtnText:hover {
+  border-color: #d9b6ff;
+  color: #d9b6ff;
+  cursor: pointer;
+}
 
-  .BtnText:active {
-    border-color: #ad61ff;
-    color: #ad61ff;
-    cursor: pointer;
-  }
+.active {
+  border-color: #ad61ff;
+  color: #ad61ff;
+  cursor: pointer;
+}
+
+.filterButtonSpisok {
+  width: 250px;
+  height: 300px;
+  top: 288px;
+  left: 386px;
+  padding: 34px 0px 0px 0px;
+  position: absolute;
+  border-radius: 10px;
+  border: 0.7px solid #313131;
+  box-shadow: 0px 10px 39px 0px rgba(26, 56, 101, 0.21);
+  text-align: center;
+
+}
+
+.BtnSpisok:hover {
+  border-color: #d9b6ff;
+  color: #d9b6ff;
+  cursor: pointer;
+}
+
+.BtnSpisok:active {
+  text-decoration: underline;
+  color: #ad61ff;
+  cursor: pointer;
+}

@@ -2,22 +2,32 @@
 'use client';
 
 import { useEffect } from 'react';
+import styles from './error.module.css'
+import Image from 'next/image';
 
-// type ErrorType = {
-//     error: string;
-//     reser: string[];
-// }
 
-export default function Error({ error, reset }) {
+type ErrorType = {
+    error: Error;
+    reset: () => void;
+}
+
+export default function Error({ error, reset }: ErrorType) {
     useEffect(() => {
         // Логирование ошибки
         console.error(error);
     }, [error]);
 
     return (
-        <div>
-            <h2>Что-то пошло не так!</h2>
-            <button onClick={reset}>Попробовать снова</button>
+        <div className={styles.block}>
+            <Image
+            className={styles.logo}
+            src="/src/reactor.png"
+            alt='logo'
+            width={120}
+            height={120}
+            />
+            <h2 className={styles.h}>Что-то пошло не так!</h2>
+            <button className={styles.c} onClick={reset}>Попробовать снова</button>
         </div>
     );
 }
