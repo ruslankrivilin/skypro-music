@@ -35,7 +35,7 @@
   border: 0.7px solid #313131;
   box-shadow: 0px 10px 39px 0px rgba(26, 56, 101, 0.21);
   text-align: center;
-
+  background-color: #313131;
 }
 
 .BtnSpisok:hover {
@@ -48,4 +48,8 @@
   text-decoration: underline;
   color: #ad61ff;
   cursor: pointer;
+}
+
+.BtnSpisok {
+
 }
