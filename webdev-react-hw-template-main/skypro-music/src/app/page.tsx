@@ -1,12 +1,17 @@
+'use client';
+
 import Nav from "@/components/Nav/Nav";
 import Player from "@/components/Player/Player";
 import Playlist from "@/components/Playlist/Playlist";
 import Search from "@/components/Search/Search";
 import Sidebar from "@/components/Sidebar/Sidebar";
 import styles from "./page.module.css";
+import { useState } from "react";
+import { TrackType } from "@/Types";
 
 
 export default function Home() {
+  const [track, setTrack] = useState<TrackType | null>(null);
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
@@ -14,11 +19,11 @@ export default function Home() {
           <Nav />
           <div className={styles.mainCenterblock}>
             <Search />
-            <Playlist />
+            <Playlist setTrack={setTrack} />
           </div>
           <Sidebar />
         </main>
-        <Player />
+        {track && (<Player track={track} />)}
         <footer className={styles.footer} />
       </div>
     </div>

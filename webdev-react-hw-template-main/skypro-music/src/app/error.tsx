@@ -21,7 +21,7 @@ export default function Error({ error, reset }: ErrorType) {
         <div className={styles.block}>
             <Image
             className={styles.logo}
-            src="/src/reactor.png"
+            src="/img/reactor.png"
             alt='logo'
             width={120}
             height={120}

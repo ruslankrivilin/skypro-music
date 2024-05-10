@@ -1,17 +1,30 @@
 import Track from "../Track/Track";
 import classNames from "classnames";
 import styles from "./Playlist.module.css";
-import { getTracks } from "@/api/tracks";
 import { TrackType } from "@/Types";
+import { useEffect, useState } from "react";
+import { getTracks } from "@/api/tracks";
 
-export default async function Playlist() {
+type PlaylistType = {
+  setTrack: (param: TrackType) => void;
+}
+export default async function Playlist({ setTrack }: PlaylistType) {
   // const tracksData: trackType[] = await getTracks();
-  let tracksData: TrackType[];
-  try {
-    tracksData = await getTracks();
-  } catch (error: any) {
-    throw new Error(error.message);
-  }
+  // let tracksData: TrackType[];
+  // try {
+  //   tracksData = await getTracks();
+  // } catch (error: any) {
+  //   throw new Error(error.message);
+  // }
+  const [tracksData, setTracksData] = useState<TrackType[]>([]);
+
+  // useEffect(() => {
+
+  //   getTracks().then((data: TrackType[]) => setTracksData(data))
+  //     .catch((error: any) => {
+  //       throw new Error(error.message);
+  //     });
+  // }, []);
   return (
     <div className={styles.centerblockContent}>
       <div className={styles.contentTitle}>
@@ -27,6 +40,7 @@ export default async function Playlist() {
       <div className={styles.contentPlaylist}>
         {tracksData.map((trackData) => (
           <Track
+            onClick={() => setTrack(trackData)}
             key={trackData.id}
             name={trackData.name}
             author={trackData.author}
