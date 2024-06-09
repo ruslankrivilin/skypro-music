@@ -1,5 +1,3 @@
-
-import Filters from "../Filters/Filters";
 import styles from "./Search.module.css";
 
 
@@ -17,8 +15,6 @@ export default function Search() {
           name="search"
         />
       </div>
-      <h2 className={styles.centerblockH2}>Треки</h2>
-      <Filters />
     </>
   )
 }

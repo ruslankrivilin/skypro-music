@@ -8,6 +8,9 @@ import { useState } from "react";
 
 export default function Nav() {
   const [isOpened, setIsOpened] = useState<boolean>(false);
+  function toggleMenu() {
+    setIsOpened((prev) => !prev);
+  }
   return (
     <nav className={styles.mainNav}>
       <div className={styles.navLogo}>
@@ -19,7 +22,7 @@ export default function Nav() {
           height={17}
         />
       </div>
-      <div onClick={() => setIsOpened((prev) => !prev)} className={styles.navBurger}>
+      <div onClick={toggleMenu} className={styles.navBurger}>
         <span className={styles.burgerLine} />
         <span className={styles.burgerLine} />
         <span className={styles.burgerLine} />

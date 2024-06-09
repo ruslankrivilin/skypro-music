@@ -1,5 +1,5 @@
 // Обратите внимание, что компонент ошибки – клиентский
-'use client';
+'use client'
 
 import { useEffect } from 'react';
 import styles from './error.module.css'
@@ -7,7 +7,7 @@ import Image from 'next/image';
 
 
 type ErrorType = {
-    error: Error;
+    error: string;
     reset: () => void;
 }
 
@@ -19,15 +19,16 @@ export default function Error({ error, reset }: ErrorType) {
 
     return (
         <div className={styles.block}>
-            <Image
-            className={styles.logo}
-            src="/img/reactor.png"
-            alt='logo'
-            width={120}
-            height={120}
-            />
             <h2 className={styles.h}>Что-то пошло не так!</h2>
             <button className={styles.c} onClick={reset}>Попробовать снова</button>
+            <Image
+            className={styles.logo}
+            src="/img/error.jpg"
+            alt='logo'
+            width={2020}
+            height={900}
+            />
+            
         </div>
     );
 }
