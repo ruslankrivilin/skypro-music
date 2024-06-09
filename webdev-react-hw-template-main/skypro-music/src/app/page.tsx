@@ -1,29 +1,28 @@
-'use client';
+'use client'
 
 import Nav from "@/components/Nav/Nav";
-import Player from "@/components/Player/Player";
-import Playlist from "@/components/Playlist/Playlist";
-import Search from "@/components/Search/Search";
 import Sidebar from "@/components/Sidebar/Sidebar";
 import styles from "./page.module.css";
-import { useState } from "react";
-import { TrackType } from "@/Types";
+// import { useState } from "react";
+// import { TrackType } from "@/Types";
+import CenterBlock from "@/components/CenterBlock/CenterBlock";
+import PlayerBar from "@/components/PlayerBar/PlayerBar";
+import MainSideBar from "@/components/MainSideBar/MainSideBar";
 
 
 export default function Home() {
-  const [track, setTrack] = useState<TrackType | null>(null);
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
         <main className={styles.main}>
           <Nav />
-          <div className={styles.mainCenterblock}>
-            <Search />
-            <Playlist setTrack={setTrack} />
-          </div>
+          {/* <div className={styles.mainCenterblock}> */}
+          <CenterBlock />
+          {/* </div> */}
           <Sidebar />
+          <MainSideBar />
         </main>
-        {track && (<Player track={track} />)}
+        <PlayerBar />
         <footer className={styles.footer} />
       </div>
     </div>

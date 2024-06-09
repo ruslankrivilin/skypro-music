@@ -20,8 +20,8 @@ export default function Sidebar() {
                     className={styles.sidebarImg}
                     src="/img/playlist01.png"
                     alt="day's playlist"
-                    width={113}
-                    height={17} 
+                    width={250}
+                    height={150} 
                   />
                 </a>
               </div>
@@ -31,8 +31,8 @@ export default function Sidebar() {
                     className={styles.sidebarImg}
                     src="/img/playlist02.png"
                     alt="day's playlist"
-                    width={113}
-                    height={17} 
+                    width={250}
+                    height={150} 
 
                   />
                 </a>
@@ -43,8 +43,8 @@ export default function Sidebar() {
                     className={styles.sidebarImg}
                     src="/img/playlist03.png"
                     alt="day's playlist"
-                    width={113}
-                    height={170} 
+                    width={250}
+                    height={150} 
 
                   />
                 </a>

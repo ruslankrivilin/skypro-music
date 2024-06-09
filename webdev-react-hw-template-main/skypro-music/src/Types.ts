@@ -1,3 +1,5 @@
+import { ChangeEvent } from "react";
+
 export type FilterItemType = {
     title: string;
     list: string[];
@@ -23,5 +25,28 @@ export type TrackType = {
     album: string,
     logo: string | null,
     track_file: string,
-    stared_user: UseType[]
+    stared_user: UseType[],
+    onClick: () => void;
 }
+
+export type ProgressType = {
+    max: number;
+    value: number;
+    step: number;
+    onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  };
+  
+  export type PlayerControlsType = {
+    togglePlay: () => void;
+    isPlaying: boolean;
+    isLooping: boolean;
+    toggleLoop: () => void;
+  };
+  
+  export type VolumeType = {
+    min: number;
+    max: number;
+    step: number;
+    value: number;
+    onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  };
