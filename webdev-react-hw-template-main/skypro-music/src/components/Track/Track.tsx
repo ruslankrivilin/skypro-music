@@ -29,13 +29,13 @@ export default function Track({ track, tracksData}: PlaylistType) {
 
   const dispatch = useAppDispatch();
 
-  const HandleTrackClick = () => {
+  const handleTrackClick = () => {
     dispatch(setCurrentTrack({ track, tracksData }));
     dispatch(setIsPlaying(true));
   };
 
   return (
-    <div onClick={HandleTrackClick} className={styles.playlistItem}>
+    <div onClick={handleTrackClick} className={styles.playlistItem}>
       <div className={styles.playlistTrack}>
         <div className={styles.trackTitle}>
           <div className={styles.trackTitleImage}>

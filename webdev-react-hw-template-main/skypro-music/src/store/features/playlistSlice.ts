@@ -1,5 +1,6 @@
 import { TrackType } from "@/Types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { setFips } from "crypto";
 
 type playlistStateType = {
   currentTrack: null | TrackType;
@@ -10,7 +11,9 @@ type playlistStateType = {
   filterOptions: {
     author: string[],
     searchValue: string,
-  }
+  };
+  filteredTracks: TrackType[];
+  initialTracks: TrackType[];
 };
 
 const initialState: playlistStateType = {
@@ -22,13 +25,18 @@ const initialState: playlistStateType = {
   filterOptions: {
     author: [],
     searchValue: "",
-  }
+  },
+  filteredTracks: [],
+  initialTracks: [],
 };
 
 const playlistSlice = createSlice({
   name: "playlist",
   initialState,
   reducers: {
+    setInitialTracks: (state, action: PayloadAction<{initialTracks: TrackType[]}>) => {
+      state.initialTracks = action.payload.initialTracks
+    },
     setCurrentTrack: (
       state,
       action: PayloadAction<{
@@ -72,9 +80,16 @@ const playlistSlice = createSlice({
     setIsPlaying: (state, action: PayloadAction<boolean>) => {
       state.isPlaying = action.payload;
     },
+    setFilters: (state, action: PayloadAction<{ author?: string[]; searchValue?: string }>) => {
+      state.filterOptions = {
+        author: action.payload.author || state.filterOptions.author,
+        searchValue: action.payload.searchValue || state.filterOptions.searchValue,
+      };
+      state.filteredTracks = state.filteredTracks
+    },
   },
 });
 
-export const { setCurrentTrack, setNextTrack, setPreviousTrack, setIsShuffle, setIsPlaying } =
+export const { setCurrentTrack, setNextTrack, setPreviousTrack, setIsShuffle, setIsPlaying, setFilters, setInitialTracks } =
   playlistSlice.actions;
 export const playlistReducer = playlistSlice.reducer;
