@@ -1,16 +1,25 @@
-export const filters = [
+type Filterype = {
+  title: string;
+  value: "author" | "genre" | "order";
+}
 
-    {
-      title: "исполнителю",
-      list: ["Раз", "Два", "Три"]
-    },
-    {
-      title: "году выпуска",
-      list: ["2024", "2023", "2022"]
-    },
-    {
-      title: "жанру",
-      list: ["Рок", "Поп", "Классика"]
-    }
+export const filters: Filterype[] = [
+
+  {
+    title: "исполнителю",
+    value: "author"
+  },
   
-  ]
+  {
+    title: "жанру",
+    value: "genre",
+  },
+
+  {
+    title: "году выпуска",
+    value: "order",
+  }
+
+]
+
+export const order = ["По умолчанию", "Сначала новые", "Сначала старые"];
