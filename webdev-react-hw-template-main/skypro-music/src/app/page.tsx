@@ -19,8 +19,9 @@ export default function Home() {
           {/* <div className={styles.mainCenterblock}> */}
           <CenterBlock />
           {/* </div> */}
-          <Sidebar />
           <MainSideBar />
+         
+          
         </main>
         <PlayerBar />
         <footer className={styles.footer} />
