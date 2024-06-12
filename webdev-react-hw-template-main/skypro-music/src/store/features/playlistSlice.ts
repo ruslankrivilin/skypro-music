@@ -1,6 +1,5 @@
 import { TrackType } from "@/Types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { setFips } from "crypto";
 
 type playlistStateType = {
   currentTrack: null | TrackType;
@@ -10,6 +9,8 @@ type playlistStateType = {
   isPlaying: boolean;
   filterOptions: {
     author: string[],
+    genre: string[];
+    order: string;
     searchValue: string,
   };
   filteredTracks: TrackType[];
@@ -24,6 +25,8 @@ const initialState: playlistStateType = {
   isPlaying: false,
   filterOptions: {
     author: [],
+    genre: [],
+    order: "По умолчанию",
     searchValue: "",
   },
   filteredTracks: [],
@@ -81,21 +84,55 @@ const playlistSlice = createSlice({
     setIsPlaying: (state, action: PayloadAction<boolean>) => {
       state.isPlaying = action.payload;
     },
-    setFilters: (state, action: PayloadAction<{ author?: string[]; searchValue?: string }>) => {
+    setFilters: (state, action: PayloadAction<{
+      author?: string[];
+      genre?: string[];
+      order?: string;
+      searchValue?: string
+    }>) => {
       state.filterOptions = {
         author: action.payload.author || state.filterOptions.author,
+        genre: action.payload.genre || state.filterOptions.genre,
+        order: action.payload.order || state.filterOptions.order,
         searchValue: action.payload.searchValue || state.filterOptions.searchValue,
       };
-      state.filteredTracks = state.initialTracks.filter((track) => {
+      let filteredTracks = state.initialTracks.filter((track) => {
         const hasAuthors = state.filterOptions.author.length !== 0;
+        const hasGenres = state.filterOptions.genre.length !== 0;
         const isAuthors = hasAuthors
           ? state.filterOptions.author.includes(track.author)
           : true;
+          const isGenres = hasGenres
+          ? state.filterOptions.genre.includes(track.genre)
+          : true;
         const hasSearchValue = track.name
-        .toLowerCase()
-        .includes(state.filterOptions.searchValue.toLowerCase());
-        return isAuthors && hasSearchValue;
+          .toLowerCase()
+          .includes(state.filterOptions.searchValue.toLowerCase());
+        return isAuthors && isGenres && hasSearchValue;
       });
+
+      switch (state.filterOptions.order) {
+        case "Сначала новые":
+          filteredTracks.sort(
+            (a, b) =>
+              new Date(b.release_date).getTime() -
+              new Date(a.release_date).getTime()
+          );
+          break;
+        case "Сначала старые":
+          filteredTracks.sort(
+            (a, b) =>
+              new Date(a.release_date).getTime() -
+              new Date(b.release_date).getTime()
+          );
+
+          break;
+
+        default:
+          filteredTracks;
+          break;
+      }
+      state.filteredTracks = filteredTracks;
     },
   },
 });

@@ -1,6 +1,6 @@
 "use client";
 
-import { ChangeEvent, useEffect, useRef, useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useRef, useState } from "react";
 
 import ProgressBar from "../ProgressBar/ProgressBar";
 import styles from "./PlayerBar.module.css";
@@ -75,18 +75,18 @@ export default function PlayerBar() {
     setIsLooping((prev) => !prev);
   };
 
-  const handleSeek = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleSeek = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     if (audioRef.current) {
       audioRef.current.currentTime = Number(event.target.value);
     }
-  };
+  }, []);
 
-  const handleVolume = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleVolume = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     if (audioRef.current) {
       audioRef.current.volume = Number(event.target.value);
       setVolume(audioRef.current.volume);
     }
-  };
+  }, []);
 
   return (
     <>

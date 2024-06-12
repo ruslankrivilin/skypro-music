@@ -3,13 +3,32 @@
 import styles from "./Filters.module.css";
 import FilterItem from "./FilterItem/FilterItem";
 import { useState } from "react";
-import { filters } from "./data";
+import { filters, order } from "./data";
 import { TrackType } from "@/Types";
+import { useAppSelector } from "@/hooks";
 
 
 
 export default function Filters({ tracksData }: { tracksData: TrackType[] }) {
-  const [actieFilter, setActiveFilter] = useState<string | null>(null);
+  const [activeFilter, setActiveFilter] = useState<string | null>(null);
+
+  const authorsList = useAppSelector(
+    (state) => state.playlist.filterOptions.author
+  );
+  const genreList = useAppSelector(
+    (state) => state.playlist.filterOptions.genre
+  );
+
+  const filterList = (value: string) => {
+    if (value === filters[0].title) {
+      return authorsList;
+    } else if (value === filters[1].title) {
+      return genreList;
+    } else {
+      return order;
+    }
+  };
+
   function handleFilterClick(newFilter: string) {
     setActiveFilter((prev) => prev === newFilter ? null : newFilter)
   }
@@ -19,29 +38,17 @@ export default function Filters({ tracksData }: { tracksData: TrackType[] }) {
         Искать по:
       </div>
 
-      <FilterItem
-        isOpened={actieFilter === filters[0].title}
-        handleFilterClick={handleFilterClick}
-        title={filters[0].title}
-        value={filters[0].value}
-        tracksData={tracksData}
-      />
-
-      <FilterItem
-        isOpened={actieFilter === filters[1].title}
-        handleFilterClick={handleFilterClick}
-        title={filters[1].title}
-        value={filters[1].value}
-        tracksData={tracksData}
-      />
-
-      <FilterItem
-        isOpened={actieFilter === filters[2].title}
-        handleFilterClick={handleFilterClick}
-        title={filters[2].title}
-        value={filters[2].value}
-        tracksData={tracksData}
-      />
+      {filters.map((filter) => (
+        <FilterItem
+          key={filter.title}
+          list={filterList(filter.title)}
+          isOpened={activeFilter === filter.title}
+          handleFilterClick={handleFilterClick}
+          title={filter.title}
+          value={filter.value}
+          tracksData={tracksData}
+        />
+      ))}
 
     </div>
   )
