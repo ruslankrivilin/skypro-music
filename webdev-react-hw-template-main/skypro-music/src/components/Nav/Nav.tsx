@@ -14,13 +14,15 @@ export default function Nav() {
   return (
     <nav className={styles.mainNav}>
       <div className={styles.navLogo}>
+      <Link href="/">
         <Image
-          alt="Скайпро-музыка.логотип"
+          alt="логотип скайпро музыка"
           className={styles.logoImage}
           src="/img/logo.png"
           width={113}
           height={17}
         />
+      </Link>
       </div>
       <div onClick={toggleMenu} className={styles.navBurger}>
         <span className={styles.burgerLine} />
@@ -31,14 +33,14 @@ export default function Nav() {
       (<div className={styles.navMenu}>
         <ul className={styles.menuList}>
           <li className={styles.menuItem}>
-            <a href="#" className={styles.menuLink}>
+            <Link href="/" className={styles.menuLink}>
               Главное
-            </a>
+            </Link>
           </li>
           <li className={styles.menuItem}>
-            <a href="#" className={styles.menuLink}>
+            <Link href="#" className={styles.menuLink}>
               Мой плейлист
-            </a>
+            </Link>
           </li>
           <li className={styles.menuItem}>
             <Link href="/signin" className={styles.menuLink}>

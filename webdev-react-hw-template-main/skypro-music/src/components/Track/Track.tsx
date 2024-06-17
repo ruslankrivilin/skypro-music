@@ -4,8 +4,8 @@ import { setCurrentTrack, setIsPlaying } from "@/store/features/playlistSlice";
 import styles from "./Track.module.css";
 import { TrackType } from "@/Types";
 import classNames from "classnames";
-import { durationFormat } from "@/utils";
 import { useAppDispatch, useAppSelector } from "@/hooks";
+import { durationFormat } from "@/lib/durationFormat";
 
 // type trackType = {
 //   name: string;
@@ -18,7 +18,6 @@ type PlaylistType = {
   track: TrackType;
   tracksData: TrackType[];
 };
-
 
 export default function Track({ track, tracksData}: PlaylistType) {
   const currentTrack = useAppSelector((state) => state.playlist.currentTrack);
@@ -45,7 +44,7 @@ export default function Track({ track, tracksData}: PlaylistType) {
               })}
             >
               <use
-                xlinkHref={`img/icon/sprite.svg#${
+                xlinkHref={`/img/icon/sprite.svg#${
                   isCurrentTrack ? "icon-isplaying" : "icon-note"
                 }`}
               />
@@ -65,7 +64,7 @@ export default function Track({ track, tracksData}: PlaylistType) {
         </div>
         <div className={styles.trackTime}>
           <svg className={styles.trackTimeSvg}>
-            <use xlinkHref="img/icon/sprite.svg#icon-like" />
+            <use xlinkHref="/img/icon/sprite.svg#icon-like" />
           </svg>
           <span className={styles.trackTimeText}>
             {durationFormat(duration_in_seconds)}

@@ -4,12 +4,11 @@ import styles from "./Filters.module.css";
 import FilterItem from "./FilterItem/FilterItem";
 import { useState } from "react";
 import { filters, order } from "./data";
-import { TrackType } from "@/Types";
 import { useAppSelector } from "@/hooks";
 
 
 
-export default function Filters({ tracksData }: { tracksData: TrackType[] }) {
+export default function Filters() {
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
 
   const authorsList = useAppSelector(
@@ -41,12 +40,11 @@ export default function Filters({ tracksData }: { tracksData: TrackType[] }) {
       {filters.map((filter) => (
         <FilterItem
           key={filter.title}
-          list={filterList(filter.title)}
+          optionList={filterList(filter.title)}
           isOpened={activeFilter === filter.title}
           handleFilterClick={handleFilterClick}
           title={filter.title}
           value={filter.value}
-          tracksData={tracksData}
         />
       ))}
 
