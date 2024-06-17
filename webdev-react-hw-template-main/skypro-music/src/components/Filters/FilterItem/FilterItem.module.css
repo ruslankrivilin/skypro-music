@@ -1,28 +1,6 @@
-.titleFilterBox {
-  display: flex;
+.wrapper {
   position: relative;
-}
-
-.filterNumber {
-  position: absolute;
-  right: 0px;
-  bottom: 26px;
-  width: 26px;
-  height: 26px;
-  border-radius: 13px;
-  background: #ad61ff;
-  font-family: "Montserrat";
-  font-size: 13px;
-  font-weight: 400;
-  line-height: 13px;
-  text-align: center;
-  padding: 6px;
-}
-
-.btnText:hover {
-  border-color: #d9b6ff;
-  color: #d9b6ff;
-  cursor: pointer;
+  left: 10px;
 }
 
 .filterButton {
@@ -36,80 +14,76 @@
   margin-right: 10px;
 }
 
-.filterButton:not(:last-child) {
-  margin-right: 10px;
-}
-
 .BtnText:hover {
   border-color: #d9b6ff;
   color: #d9b6ff;
   cursor: pointer;
 }
 
-.btnText:active {
+.active {
   border-color: #ad61ff;
   color: #ad61ff;
   cursor: pointer;
+}
+
+.activeFilterContainer {
+  position: absolute;
+  width: 248px;
+  height: 305px;
+  background-color: #313131;
+  border-radius: 12px;
+  padding: 34px;
+  top: 45px;
 }
 
 .activeFilter {
-  border-color: #ad61ff;
-  color: #ad61ff;
-  cursor: pointer;
-}
-
-.listContainer {
-  width: 248px;
-  height: auto;
-  padding: 34px;
-  margin-top: 12px;
-  margin-left: 0;
-  border-radius: 12px;
-  opacity: 0px;
-  background: #313131;
-  position: absolute;
-  cursor: default;
-}
-
-.listBox {
-  width: 180px;
-  max-height: 237px;
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  opacity: 0px;
-  overflow: auto;
-}
-
-.listText {
-  font-family: "Montserrat";
-  font-size: 20px;
+  gap: 28px;
   font-weight: 400;
   line-height: 24px;
+  letter-spacing: 0%;
   text-align: left;
-  color: #ffffff;
+  height: 237px;
+  overflow-y: auto;
 }
 
-.listText:hover {
-  cursor: pointer;
-  text-decoration: underline;
-}
-
-.listText:active {
+.activeFilter li:hover {
   color: #b672ff;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.SelectedFilter {
+  color: #ad61ff;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
-.listBox::-webkit-scrollbar {
-  width: 6px;
+.filterNumber {
+  background-color: #ad61ff;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 13px;
+  letter-spacing: 0px;
+  text-align: center;
+  border-radius: 25px;
+  width: 26px;
+  height: 25.5px;
+  position: absolute;
+  padding-top: 7px;
+  top: -8px;
+  right: 0px;
 }
 
-.listBox::-webkit-scrollbar-track {
-  background: #4b4949;
+.activeFilter.activeFilter::-webkit-scrollbar {
+  width: 4px;
 }
 
-.listBox::-webkit-scrollbar-thumb {
-  height: 10px;
-  background-color: blue;
-  border-radius: 8px;
-  border: 3px solid #ffffff;
+.activeFilter.activeFilter::-webkit-scrollbar-track {
+  background-color: #4b4949;
+}
+
+.activeFilter.activeFilter::-webkit-scrollbar-thumb {
+  background-color: white;
 }

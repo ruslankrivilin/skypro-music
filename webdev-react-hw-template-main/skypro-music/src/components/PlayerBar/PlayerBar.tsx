@@ -4,12 +4,12 @@ import { ChangeEvent, useCallback, useEffect, useRef, useState } from "react";
 
 import ProgressBar from "../ProgressBar/ProgressBar";
 import styles from "./PlayerBar.module.css";
-import { durationFormat } from "@/utils";
 import { useAppDispatch, useAppSelector } from "@/hooks";
 import { setIsPlaying, setNextTrack } from "@/store/features/playlistSlice";
 import VolumeBar from "../VolumeBar/VolumeBar";
 import PlayerControls from "../PlayerControls/PlayerControls";
 import PlayerTrackNow from "../PlayerTrackNow/PlayerTrackNow";
+import { durationFormat } from "@/lib/durationFormat";
 
 export default function PlayerBar() {
   const currentTrack = useAppSelector((state) => state.playlist.currentTrack);

@@ -1,0 +1,36 @@
+.contentPlaylist {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    overflow-y: auto;
+    max-height: 673px;
+  }
+
+  .centerblockH2 {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 64px;
+    line-height: 72px;
+    letter-spacing: -0.8px;
+    margin-bottom: 45px;
+  }
+  
+  .contentPlaylist::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .contentPlaylist::-webkit-scrollbar-track {
+    background: #4b4949;
+  }
+  
+  .contentPlaylist::-webkit-scrollbar-thumb {
+    height: 65px;
+    background-color: blue;
+    border-radius: 8px;
+    border: 3px solid #ffffff;
+  }
+  

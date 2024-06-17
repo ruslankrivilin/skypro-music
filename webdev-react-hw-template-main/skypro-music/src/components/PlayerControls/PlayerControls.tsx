@@ -25,9 +25,18 @@ export default function PlayerControls({
     dispatch(setPreviousTrack());
     dispatch(setIsPlaying(true));
   };
+
   const handleShuffle = () => {
-    dispatch(setIsShuffle(!setIsShuffle));
+    if (isShuffle) {
+      dispatch(setIsShuffle(false));
+    } else {
+      dispatch(setIsShuffle(true));
+    }
   };
+  
+  // const handleShuffle = () => {
+  //   dispatch(setIsShuffle(!setIsShuffle));
+  // };
 
   return (
     <div className={styles.playerControls}>
