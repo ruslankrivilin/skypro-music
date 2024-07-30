@@ -84,6 +84,8 @@ const playlistSlice = createSlice({
     setIsPlaying: (state, action: PayloadAction<boolean>) => {
       state.isPlaying = action.payload;
     },
+    nextTrack: changeTrack(1),
+    prevTrack: changeTrack(-1),
     setFilters: (state, action: PayloadAction<{
       author?: string[];
       genre?: string[];
@@ -125,9 +127,7 @@ const playlistSlice = createSlice({
               new Date(a.release_date).getTime() -
               new Date(b.release_date).getTime()
           );
-
           break;
-
         default:
           filteredTracks;
           break;
@@ -137,6 +137,32 @@ const playlistSlice = createSlice({
   },
 });
 
-export const { setCurrentTrack, setNextTrack, setPreviousTrack, setIsShuffle, setIsPlaying, setFilters, setInitialTracks } =
+function changeTrack(direction: number) {
+  return (state: playlistStateType) => {
+    const currentTracks = state.isShuffle
+      ? state.shuffledPlaylist
+      : state.playlist;
+    let newIndex =
+      currentTracks.findIndex((item) => item.id === state.currentTrack?.id) +
+      direction;
+
+    // Циклическое переключение
+    newIndex = (newIndex + currentTracks.length) % currentTracks.length;
+
+    state.currentTrack = currentTracks[newIndex];
+    state.isPlaying = true;
+  };
+}
+
+export const { 
+  setCurrentTrack, 
+  setNextTrack, 
+  setPreviousTrack, 
+  setIsShuffle, 
+  setIsPlaying,
+  nextTrack,
+  prevTrack, 
+  setFilters, 
+  setInitialTracks } =
   playlistSlice.actions;
 export const playlistReducer = playlistSlice.reducer;

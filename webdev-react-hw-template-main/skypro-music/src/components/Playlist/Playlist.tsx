@@ -5,6 +5,7 @@ import classNames from "classnames";
 export default function Playlist({
   tracks,
   playlist,
+  isFavorite,
 }: {
   tracks: TrackType[];
   playlist: TrackType[];
@@ -22,11 +23,11 @@ export default function Playlist({
         <div className={classNames(styles.playlistTitleColumn, styles.column03)}>
           Альбом
         </div>
-      <div className={classNames(styles.playlistTitleColumn, styles.column04)}>
-        <svg className={styles.playlistTitleSvg}>
-          <use xlinkHref="img/icon/sprite.svg#icon-watch" />
-        </svg>
-      </div>
+        <div className={classNames(styles.playlistTitleColumn, styles.column04)}>
+          <svg className={styles.playlistTitleSvg}>
+            <use xlinkHref="img/icon/sprite.svg#icon-watch" />
+          </svg>
+        </div>
       </div>
       <div className={styles.contentPlaylist}>
         {tracks?.map((trackData) => (
@@ -34,6 +35,7 @@ export default function Playlist({
             track={trackData}
             tracksData={playlist}
             key={trackData.id}
+            isFavorite={isFavorite}
           />
         ))}
       </div>
