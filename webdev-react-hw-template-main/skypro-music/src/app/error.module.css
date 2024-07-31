@@ -1,5 +1,10 @@
 .block {
-
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    left: 0;
 }
 
 .logo {
@@ -7,9 +12,36 @@
 }
 
 .h {
-    color: black;
+    color: white;
+    font-size: 60px;
+    padding-bottom: 15px;
 }
 
-.c {
-    
+
+.hh {
+    z-index: 999;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 5%;
 }
+.c {
+    width: 278px;
+    height: 52px;
+    background-color: greenyellow;
+    border: 1px solid #d0cece;
+    color: #000000;
+    cursor: pointer;
+    border-radius: 30px;
+}
+
+
+.cc {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 24px;
+    letter-spacing: -0.05px;
+    color: black;
+  }

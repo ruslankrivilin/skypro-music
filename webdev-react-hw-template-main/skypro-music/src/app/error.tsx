@@ -19,16 +19,21 @@ export default function Error({ error, reset }: ErrorType) {
 
     return (
         <div className={styles.block}>
-            <h2 className={styles.h}>Что-то пошло не так!</h2>
-            <button className={styles.c} onClick={reset}>Попробовать снова</button>
+
             <Image
-            className={styles.logo}
-            src="/img/error.jpg"
-            alt='logo'
-            width={2020}
-            height={900}
+                className={styles.logo}
+                src="/img/error.jpg"
+                alt='logo'
+                width={2020}
+                height={1400}
             />
-            
+            <div className={styles.hh}>
+                <h2 className={styles.h}>Что-то пошло не так!</h2>
+                <button className={styles.c} onClick={reset}>
+                    <span className={styles.cc}>Попробовать снова</span>
+                </button>
+            </div>
+
         </div>
     );
 }

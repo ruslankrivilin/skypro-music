@@ -6,9 +6,11 @@ import styles from "./Signup.module.css";
 import { useState } from "react";
 import { useUser } from "@/hooks/useUser";
 import { signup } from "@/api/signup";
+// import { useRouter } from "next/router";
 
 export default function SignUp() {
   const { login } = useUser();
+  // const router = useRouter();
   const [signupData, setSignupData] = useState({
     email: "",
     username: "",
@@ -32,6 +34,7 @@ export default function SignUp() {
       .catch((error) => {
         alert(error);
       });
+    // router.push('/signin')
   };
 
   return (
@@ -58,14 +61,13 @@ export default function SignUp() {
             />
             <input
               className={styles.modalInput}
-              type="password"
+              type="text"
               name="username"
-              placeholder="Пароль"
+              placeholder="Имя пользователя"
               value={signupData.username}
               onChange={handleInputChange}
             />
             <input
-              // ПРОФИЛЬ ИЛИ ПАРОЛЬ
               className={styles.modalInput}
               type="password"
               name="password"

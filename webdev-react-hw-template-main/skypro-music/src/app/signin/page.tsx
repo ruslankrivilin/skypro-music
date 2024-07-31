@@ -7,6 +7,7 @@ import classNames from "classnames";
 import { useState } from "react";
 import { signin } from "@/api/signin";
 import { useUser } from "@/hooks/useUser";
+// import { useRouter } from "next/router";
 
 type SigninType = {
   email: string;
@@ -14,13 +15,9 @@ type SigninType = {
 };
 
 export default function SigninPage() {
-  // const dispatch = useAppDispatch();
   const [loginData, setLoginData] = useState<SigninType>({ email: "", password: "" });
-
   // const router = useRouter();
-
   const { login } = useUser();
-
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -39,6 +36,7 @@ export default function SigninPage() {
       .catch((error) => {
         alert(error);
       });
+    // router.push('/tracks')
   };
 
   return (
@@ -74,7 +72,6 @@ export default function SigninPage() {
             />
             <button onClick={handleLogin} className={styles.modalBtnEnter}>
               <span className={styles.modalBtnEnterLink} >Войти</span>
-              {/* Как сделать перенаправление */}
             </button>
             <button className={styles.modalBtnSignup}>
               <Link className={styles.modalBtnSignupLink} href="/signup">Зарегистрироваться</Link>
