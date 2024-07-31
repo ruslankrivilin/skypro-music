@@ -84,7 +84,10 @@ const playlistSlice = createSlice({
     setIsPlaying: (state, action: PayloadAction<boolean>) => {
       state.isPlaying = action.payload;
     },
-    setFilters: (state, action: PayloadAction<{
+    nextTrack: changeTrack(1),
+    prevTrack: changeTrack(-1),
+    setFilters: (state, 
+      action: PayloadAction<{
       author?: string[];
       genre?: string[];
       order?: string;
@@ -94,7 +97,10 @@ const playlistSlice = createSlice({
         author: action.payload.author || state.filterOptions.author,
         genre: action.payload.genre || state.filterOptions.genre,
         order: action.payload.order || state.filterOptions.order,
-        searchValue: action.payload.searchValue || state.filterOptions.searchValue,
+        searchValue:
+          typeof action.payload.searchValue === "string"
+            ? action.payload.searchValue
+            : state.filterOptions.searchValue,
       };
       let filteredTracks = state.initialTracks.filter((track) => {
         const hasAuthors = state.filterOptions.author.length !== 0;
@@ -105,9 +111,13 @@ const playlistSlice = createSlice({
           const isGenres = hasGenres
           ? state.filterOptions.genre.includes(track.genre)
           : true;
-        const hasSearchValue = track.name
-          .toLowerCase()
-          .includes(state.filterOptions.searchValue.toLowerCase());
+          const hasSearchValue =
+          track.name
+            .toLowerCase()
+            .includes(state.filterOptions.searchValue.toLowerCase()) ||
+          track.author
+            .toLowerCase()
+            .includes(state.filterOptions.searchValue.toLowerCase());
         return isAuthors && isGenres && hasSearchValue;
       });
 
@@ -125,9 +135,7 @@ const playlistSlice = createSlice({
               new Date(a.release_date).getTime() -
               new Date(b.release_date).getTime()
           );
-
           break;
-
         default:
           filteredTracks;
           break;
@@ -137,6 +145,32 @@ const playlistSlice = createSlice({
   },
 });
 
-export const { setCurrentTrack, setNextTrack, setPreviousTrack, setIsShuffle, setIsPlaying, setFilters, setInitialTracks } =
+function changeTrack(direction: number) {
+  return (state: playlistStateType) => {
+    const currentTracks = state.isShuffle
+      ? state.shuffledPlaylist
+      : state.playlist;
+    let newIndex =
+      currentTracks.findIndex((item) => item.id === state.currentTrack?.id) +
+      direction;
+
+    // Циклическое переключение
+    newIndex = (newIndex + currentTracks.length) % currentTracks.length;
+
+    state.currentTrack = currentTracks[newIndex];
+    state.isPlaying = true;
+  };
+}
+
+export const { 
+  setCurrentTrack, 
+  setNextTrack, 
+  setPreviousTrack, 
+  setIsShuffle, 
+  setIsPlaying,
+  nextTrack,
+  prevTrack, 
+  setFilters, 
+  setInitialTracks } =
   playlistSlice.actions;
 export const playlistReducer = playlistSlice.reducer;

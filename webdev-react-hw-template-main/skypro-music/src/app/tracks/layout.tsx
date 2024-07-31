@@ -3,6 +3,7 @@ import PlayerBar from "@/components/PlayerBar/PlayerBar";
 import styles from "./layout.module.css";
 import Search from "@/components/Search/Search";
 import dynamic from "next/dynamic";
+import MainSideBar from "@/components/MainSideBar/MainSideBar";
 
 const Sidebar = dynamic(() => import("@/components/Sidebar/Sidebar"), {
   ssr: false,
@@ -22,7 +23,7 @@ export default function TracksLayout({
             <Search />
             {children}
           </div>
-          <Sidebar />
+          <MainSideBar />
         </main>
         <PlayerBar />
         <footer className="footer" />
