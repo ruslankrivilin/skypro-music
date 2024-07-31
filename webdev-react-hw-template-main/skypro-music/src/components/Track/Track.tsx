@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 import { deleteFavoriteTracks, postFavoriteTracks, refreshToken } from "@/api/tracks";
 
 
-type PlaylistType = {
+export type PlaylistType = {
   track: TrackType;
   tracksData: TrackType[];
   isFavorite?: boolean;
@@ -33,8 +33,7 @@ export default function Track({ track, tracksData, isFavorite}: PlaylistType) {
   };
 
   useEffect(() => {
-    const isLikedByUser =
-      isFavorite || !!track.stared_user.find((arg) => arg.id === user?.id);
+    const isLikedByUser = isFavorite || !!track.stared_user.find((arg) => arg.id === user?.id);
     setIsLiked(isLikedByUser);
   }, [track]);
 
@@ -53,7 +52,6 @@ export default function Track({ track, tracksData, isFavorite}: PlaylistType) {
                 setCurrentTrack({
                   track: { ...currentTrack, isLiked: !isLiked },
                   tracksData,
-                  // isPlaying: false,
                 })
               );
             }
@@ -71,7 +69,6 @@ export default function Track({ track, tracksData, isFavorite}: PlaylistType) {
                       setCurrentTrack({
                         track: { ...currentTrack, isLiked: !isLiked },
                         tracksData,
-                        // isPlaying: false,
                       })
                     );
                   }
@@ -93,7 +90,6 @@ export default function Track({ track, tracksData, isFavorite}: PlaylistType) {
                 setCurrentTrack({
                   track: { ...currentTrack, isLiked: !isLiked },
                   tracksData,
-                  // isPlaying: false,
                 })
               );
             }
@@ -111,7 +107,6 @@ export default function Track({ track, tracksData, isFavorite}: PlaylistType) {
                       setCurrentTrack({
                         track: { ...currentTrack, isLiked: !isLiked },
                         tracksData,
-                        // isPlaying: false,
                       })
                     );
                   }

@@ -1,4 +1,4 @@
-import { getCategoryTracks, getPlaylist } from "@/api/tracks";
+import { getCategoryTracks } from "@/api/tracks";
 
 import styles from "./page.module.css";
 import Playlist from "@/components/Playlist/Playlist";

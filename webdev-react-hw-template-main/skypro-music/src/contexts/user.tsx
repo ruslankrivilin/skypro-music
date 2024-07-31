@@ -1,6 +1,6 @@
 "use client";
 
-import { getToken } from "@/api/tracks";
+import { postToken } from "@/api/tracks";
 import { UserContextType } from "@/Types";
 import { useRouter } from "next/navigation";
 import { FC, PropsWithChildren, createContext, useState } from "react";
@@ -25,7 +25,7 @@ function getTokenFromLocalStorage() {
 
 const initialValue: UserContextType = {
   user: null,
-  login: (param, data) => {},
+  login: (param, data) => {},//какие данные
   logout: () => {},
 };
 
@@ -40,7 +40,7 @@ export const UserProvider: FC<PropsWithChildren> = ({ children }) => {
   ) {
     setUser(newUser);
     localStorage.setItem("user", JSON.stringify(newUser));
-    getToken(loginData).then((tokenData) => {
+    postToken(loginData).then((tokenData) => {
       setToken(tokenData);
       localStorage.setItem("token", JSON.stringify(tokenData));
       router.push("/");

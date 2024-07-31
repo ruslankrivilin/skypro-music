@@ -86,7 +86,8 @@ const playlistSlice = createSlice({
     },
     nextTrack: changeTrack(1),
     prevTrack: changeTrack(-1),
-    setFilters: (state, action: PayloadAction<{
+    setFilters: (state, 
+      action: PayloadAction<{
       author?: string[];
       genre?: string[];
       order?: string;
@@ -96,7 +97,10 @@ const playlistSlice = createSlice({
         author: action.payload.author || state.filterOptions.author,
         genre: action.payload.genre || state.filterOptions.genre,
         order: action.payload.order || state.filterOptions.order,
-        searchValue: action.payload.searchValue || state.filterOptions.searchValue,
+        searchValue:
+          typeof action.payload.searchValue === "string"
+            ? action.payload.searchValue
+            : state.filterOptions.searchValue,
       };
       let filteredTracks = state.initialTracks.filter((track) => {
         const hasAuthors = state.filterOptions.author.length !== 0;
@@ -107,9 +111,13 @@ const playlistSlice = createSlice({
           const isGenres = hasGenres
           ? state.filterOptions.genre.includes(track.genre)
           : true;
-        const hasSearchValue = track.name
-          .toLowerCase()
-          .includes(state.filterOptions.searchValue.toLowerCase());
+          const hasSearchValue =
+          track.name
+            .toLowerCase()
+            .includes(state.filterOptions.searchValue.toLowerCase()) ||
+          track.author
+            .toLowerCase()
+            .includes(state.filterOptions.searchValue.toLowerCase());
         return isAuthors && isGenres && hasSearchValue;
       });
 

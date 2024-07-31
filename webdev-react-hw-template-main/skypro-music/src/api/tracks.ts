@@ -1,13 +1,11 @@
 import { TrackType } from "@/Types";
 
 const apiUrl = 'https://skypro-music-api.skyeng.tech/catalog/track/all/';
-const apiUrlPlaylist = "https://skypro-music-api.skyeng.tech/catalog/selection/";
 const appUrlCategory = "https://skypro-music-api.skyeng.tech/catalog/selection/";
 const appUrlToken = "https://skypro-music-api.skyeng.tech/user/token/";
 const appUrlTrack = "https://skypro-music-api.skyeng.tech/catalog/track/";
 const appUrlFavoriteTracks = "https://skypro-music-api.skyeng.tech/catalog/track/favorite/all/";
 const appUrlRefreshToken = "https://skypro-music-api.skyeng.tech/user/token/refresh/";
-
 
 export async function getTracks({ id }: { id: number }) {
   const res = await fetch(apiUrl, {
@@ -25,17 +23,6 @@ export async function getTracks({ id }: { id: number }) {
     const isLiked = !!track.stared_user.find((user) => user.id === id);
     return { ...track, isLiked };
   });
-}
-
-export async function getPlaylist(id: string) {
-  const res = await fetch(apiUrlPlaylist + id);
-
-  if (!res.ok) {
-    throw new Error("Ошибка при получении данных");
-  }
-
-  const data = await res.json();
-  return data.items;
 }
 
 export async function postFavoriteTracks(id: number, token: string) {
@@ -98,7 +85,7 @@ export async function getCategoryTracks(id: string) {
   return data.items;
 }
 
-export async function getToken({
+export async function postToken({
   email,
   password,
 }: {
