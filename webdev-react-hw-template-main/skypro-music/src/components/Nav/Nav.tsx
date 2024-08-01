@@ -4,6 +4,7 @@ import Image from "next/image";
 import styles from "./Nav.module.css";
 import Link from "next/link";
 import { useState } from "react";
+import { useUser } from "@/hooks/useUser";
 
 
 export default function Nav() {
@@ -11,6 +12,8 @@ export default function Nav() {
   function toggleMenu() {
     setIsOpened((prev) => !prev);
   }
+  const { user } = useUser();
+
   return (
     <nav className={styles.mainNav}>
       <div className={styles.navLogo}>
@@ -29,7 +32,7 @@ export default function Nav() {
         <span className={styles.burgerLine} />
         <span className={styles.burgerLine} />
       </div>
-      {isOpened && 
+      {isOpened ? 
       (<div className={styles.navMenu}>
         <ul className={styles.menuList}>
           <li className={styles.menuItem}>
@@ -42,13 +45,15 @@ export default function Nav() {
               Мой плейлист
             </Link>
           </li>
-          <li className={styles.menuItem}>
-            <Link href="/signin" className={styles.menuLink}>
-              Войти
-            </Link>
-          </li>
+          {!user?.email && (
+              <li className={styles.menuItem}>
+                <Link href="/signin" className={styles.menuLink}>
+                  Войти
+                </Link>
+              </li>
+            )}
         </ul>
-      </div>)}
+      </div>): null}
     </nav>
   )
 }

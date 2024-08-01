@@ -1,9 +1,9 @@
-type Filterype = {
+type Filtertype = {
   title: string;
   value: "author" | "genre" | "order";
 }
 
-export const filters: Filterype[] = [
+export const filters: Filtertype[] = [
 
   {
     title: "исполнителю",

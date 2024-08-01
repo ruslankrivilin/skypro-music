@@ -6,11 +6,11 @@ import styles from "./Signup.module.css";
 import { useState } from "react";
 import { useUser } from "@/hooks/useUser";
 import { signup } from "@/api/signup";
-// import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 export default function SignUp() {
   const { login } = useUser();
-  // const router = useRouter();
+  const router = useRouter();
   const [signupData, setSignupData] = useState({
     email: "",
     username: "",
@@ -34,7 +34,7 @@ export default function SignUp() {
       .catch((error) => {
         alert(error);
       });
-    // router.push('/signin')
+    router.push('/signin')
   };
 
   return (
@@ -76,7 +76,7 @@ export default function SignUp() {
               onChange={handleInputChange}
             />
             <button onClick={handleSignup} className={styles.modalBtnSignupEnt}>
-              <Link className={styles.modalBtnSignupEntLink} href="/signin">Зарегистрироваться</Link>
+              <span className={styles.modalBtnSignupEntLink}>Зарегистрироваться</span>
             </button>
           </form>
         </div>

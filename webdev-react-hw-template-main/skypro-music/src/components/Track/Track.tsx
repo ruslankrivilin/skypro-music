@@ -1,6 +1,6 @@
 "use client";
 
-import { setCurrentTrack, setIsPlaying } from "@/store/features/playlistSlice";
+import { setCurrentTrack } from "@/store/features/playlistSlice";
 import styles from "./Track.module.css";
 import { TrackType } from "@/Types";
 import classNames from "classnames";
@@ -17,7 +17,7 @@ export type PlaylistType = {
   isFavorite?: boolean;
 };
 
-export default function Track({ track, tracksData, isFavorite}: PlaylistType) {
+export default function Track({ track, tracksData, isFavorite }: PlaylistType) {
   const currentTrack = useAppSelector((state) => state.playlist.currentTrack);
   const isPlaying = useAppSelector((state) => state.playlist.isPlaying);
   const { user, token } = useUser();
@@ -28,8 +28,7 @@ export default function Track({ track, tracksData, isFavorite}: PlaylistType) {
   const [isLiked, setIsLiked] = useState(isLikedByUser);
 
   const handleTrackClick = () => {
-    dispatch(setCurrentTrack({ track, tracksData }));
-    dispatch(setIsPlaying(true));
+    dispatch(setCurrentTrack({ track, tracksData, isPlaying: true }));
   };
 
   useEffect(() => {
@@ -52,6 +51,7 @@ export default function Track({ track, tracksData, isFavorite}: PlaylistType) {
                 setCurrentTrack({
                   track: { ...currentTrack, isLiked: !isLiked },
                   tracksData,
+                  isPlaying: false,
                 })
               );
             }
@@ -69,6 +69,7 @@ export default function Track({ track, tracksData, isFavorite}: PlaylistType) {
                       setCurrentTrack({
                         track: { ...currentTrack, isLiked: !isLiked },
                         tracksData,
+                        isPlaying: false,
                       })
                     );
                   }
@@ -90,6 +91,7 @@ export default function Track({ track, tracksData, isFavorite}: PlaylistType) {
                 setCurrentTrack({
                   track: { ...currentTrack, isLiked: !isLiked },
                   tracksData,
+                  isPlaying: false,
                 })
               );
             }
@@ -107,6 +109,7 @@ export default function Track({ track, tracksData, isFavorite}: PlaylistType) {
                       setCurrentTrack({
                         track: { ...currentTrack, isLiked: !isLiked },
                         tracksData,
+                        isPlaying: false,
                       })
                     );
                   }
@@ -127,17 +130,20 @@ export default function Track({ track, tracksData, isFavorite}: PlaylistType) {
       <div className={styles.playlistTrack}>
         <div className={styles.trackTitle}>
           <div className={styles.trackTitleImage}>
-            <svg
-              className={classNames(styles.trackTitleSvg, {
-                [styles.trackTitleSvgPlaying]: isPlaying && isCurrentTrack,
-              })}
-            >
-              <use
-                xlinkHref={`/img/icon/sprite.svg#${
-                  isCurrentTrack ? "icon-isplaying" : "icon-note"
-                }`}
-              />
-            </svg>
+          {isCurrentTrack ? (
+              <div
+                className={classNames(styles.animation, {
+                  [styles.trackTitleSvgPlaying]: isPlaying,
+                })}
+              ></div>
+            ) : (
+              <svg className={classNames(styles.trackTitleSvg)}>
+                <use
+                  xlinkHref={`/img/icon/sprite.svg#icon-note
+              `}
+                />
+              </svg>
+            )}
           </div>
           <div className={styles.trackTitleText}>
             <span className={styles.trackTitleLink}>

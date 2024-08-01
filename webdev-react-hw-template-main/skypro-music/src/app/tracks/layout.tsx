@@ -3,9 +3,8 @@ import PlayerBar from "@/components/PlayerBar/PlayerBar";
 import styles from "./layout.module.css";
 import Search from "@/components/Search/Search";
 import dynamic from "next/dynamic";
-import MainSideBar from "@/components/MainSideBar/MainSideBar";
 
-const Sidebar = dynamic(() => import("@/components/Sidebar/Sidebar"), {
+const MainSideBar = dynamic(() => import("@/components/MainSideBar/MainSideBar"), {
   ssr: false,
 });
 

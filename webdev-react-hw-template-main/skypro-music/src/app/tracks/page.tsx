@@ -29,7 +29,7 @@ export default function MainTraksPage() {
     <>
       <h2 className={styles.centerblockH2}>Треки</h2>
       <Filters />
-      <Playlist tracks={filteredTracks} playlist={tracks} isFavorite={true} />
+      <Playlist tracks={filteredTracks} playlist={tracks}/>
     </>
   );
 }
