@@ -7,7 +7,7 @@ import classNames from "classnames";
 import { useState } from "react";
 import { signin } from "@/api/signin";
 import { useUser } from "@/hooks/useUser";
-// import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 type SigninType = {
   email: string;
@@ -16,7 +16,7 @@ type SigninType = {
 
 export default function SigninPage() {
   const [loginData, setLoginData] = useState<SigninType>({ email: "", password: "" });
-  // const router = useRouter();
+  const router = useRouter();
   const { login } = useUser();
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -28,7 +28,8 @@ export default function SigninPage() {
     });
   };
 
-  const handleLogin = async () => {
+  const handleLogin = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     await signin(loginData)
       .then((data) => {
         login(data, loginData);
@@ -36,7 +37,7 @@ export default function SigninPage() {
       .catch((error) => {
         alert(error);
       });
-    // router.push('/tracks')
+    router.push('/tracks')
   };
 
   return (
@@ -71,7 +72,7 @@ export default function SigninPage() {
               onChange={handleInputChange}
             />
             <button onClick={handleLogin} className={styles.modalBtnEnter}>
-              <span className={styles.modalBtnEnterLink} >Войти</span>
+              <span className={styles.modalBtnEnterLink}>Войти</span>
             </button>
             <button className={styles.modalBtnSignup}>
               <Link className={styles.modalBtnSignupLink} href="/signup">Зарегистрироваться</Link>

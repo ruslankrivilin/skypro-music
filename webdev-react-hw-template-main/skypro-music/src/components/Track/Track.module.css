@@ -136,6 +136,21 @@
   color: #696969;
 }
 
+.animation {
+  width: 16px;
+  height: 16px;
+  background-color: #b672ff;
+  border-radius: 8px;
+}
+
+.likeButton:hover {
+  fill: gray;
+}
+
+.activeLike {
+  fill: #b672ff;
+}
+
 .trackTime {
   width: 80px;
   display: flex;
