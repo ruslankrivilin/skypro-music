@@ -2,10 +2,10 @@ import { TrackType } from "@/Types";
 
 const apiUrl = 'https://skypro-music-api.skyeng.tech/catalog/track/all/';
 const appUrlCategory = "https://skypro-music-api.skyeng.tech/catalog/selection/";
-const appUrlToken = "https://skypro-music-api.skyeng.tech/user/token/";
+const appUrlToken = "https://webdev-music-003b5b991590.herokuapp.com/user/token/";
 const appUrlTrack = "https://skypro-music-api.skyeng.tech/catalog/track/";
 const appUrlFavoriteTracks = "https://skypro-music-api.skyeng.tech/catalog/track/favorite/all/";
-const appUrlRefreshToken = "https://skypro-music-api.skyeng.tech/user/token/refresh/";
+const appUrlRefreshToken = "https://webdev-music-003b5b991590.herokuapp.com/user/token/refresh/";
 
 export async function getTracks({ id }: { id: number }) {
   const res = await fetch(apiUrl, {
@@ -106,8 +106,10 @@ export async function postToken({
   if (!res.ok) {
     throw new Error("Ошибка при получении данных");
   }
+  console.log(res);
 
   return res.json();
+
 }
 
 export async function refreshToken(token: string) {
