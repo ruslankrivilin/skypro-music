@@ -10,7 +10,7 @@ export default function UserSideBar() {
       <p className={styles.sidebarPersonalName}>{user?.username}</p>
       <div onClick={logout} className={styles.sidebarIcon}>
         <svg>
-          <use xlinkHref="img/icon/sprite.svg#logout" />
+          <use xlinkHref="/img/icon/sprite.svg#logout" />
         </svg>
       </div>
     </div>
